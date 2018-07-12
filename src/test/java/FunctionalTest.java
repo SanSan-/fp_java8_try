@@ -20,4 +20,12 @@ public class FunctionalTest {
     public void factorialTest() {
         assertEquals(java.util.Optional.of(6L), java.util.Optional.of(Functional.fact(3L)));
     }
+
+    @Test
+    public void fizzBuzzTest() {
+        Functional.fizzyBuzzy.accept(100);
+        List<String> fzBz = Functional.fizzBuzzList.apply(100);
+        fzBz.forEach(fb -> Functional.print.accept(fb));
+        assertEquals(99, fzBz.size());
+    }
 }
