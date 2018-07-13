@@ -28,7 +28,7 @@ public class FunctionalTest {
 	public void fizzBuzzTest() {
 		Functional.fizzyBuzzy.accept(100);
 		List<String> fzBz = Functional.fizzBuzzList.apply(100);
-		fzBz.forEach(fb -> Functional.print.accept(fb));
+		fzBz.forEach(Functional.print);
 		assertEquals(99, fzBz.size());
 	}
 }
