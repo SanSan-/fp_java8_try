@@ -16,16 +16,16 @@ public class DaoUtil {
 	public final static String ERROR_NO_OBJECT = "[Error] There is no object!";
 	public final static String DEFAULT = "Unknown";
 
+	public static Person unbox(Person person) {
+		return Optional.ofNullable(person).orElse(new Person());
+	}
+
 	public static String getCarInsuranceName(Person person) {
 		return Optional.ofNullable(person)
 				.flatMap(Person::getCar)
 				.flatMap(Car::getInsurance)
 				.map(Insurance::getName)
 				.orElse(DEFAULT);
-	}
-
-	public static Person unbox(Person person) {
-		return Optional.ofNullable(person).orElse(new Person());
 	}
 
 	public static Validation<String, Person> validateAge(Person person) {
