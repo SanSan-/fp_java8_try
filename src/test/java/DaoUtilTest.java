@@ -3,6 +3,8 @@ import org.junit.Test;
 import services.DaoUtil;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static services.DaoUtil.DEFAULT;
 
 public class DaoUtilTest {
@@ -12,7 +14,22 @@ public class DaoUtilTest {
 		String nameAlex = "Alex";
 		assertEquals(DEFAULT, DaoUtil.getCarInsuranceName(new Person()));
 		assertEquals(DEFAULT, DaoUtil.getCarInsuranceName(Person.empty()));
-		assertEquals(nameAlex, DaoUtil.getCarInsuranceName(Person.withName(nameAlex)));
+		assertEquals(nameAlex, DaoUtil.getCarInsuranceName(Person.withInsuranceName(nameAlex)));
+	}
+
+	@Test
+	public void validation() {
+		assertFalse(DaoUtil.validateAge(new Person()).isSuccess());
+		assertFalse(DaoUtil.validateAge(Person.empty()).isSuccess());
+		assertFalse(DaoUtil.validateAge(Person.empty().withAge(0)).isSuccess());
+		assertFalse(DaoUtil.validateAge(Person.empty().withAge(130)).isSuccess());
+		assertTrue(DaoUtil.validateAge(Person.empty().withAge(1)).isSuccess());
+		assertTrue(DaoUtil.validateAge(Person.empty().withAge(129)).isSuccess());
+
+		assertFalse(DaoUtil.validateName(new Person()).isSuccess());
+		assertFalse(DaoUtil.validateName(Person.empty()).isSuccess());
+		assertFalse(DaoUtil.validateName(Person.empty().withName("sammy")).isSuccess());
+		assertTrue(DaoUtil.validateName(Person.empty().withName("Sammy")).isSuccess());
 	}
 
 }

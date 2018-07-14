@@ -5,6 +5,8 @@ import java.util.Optional;
 public class Person {
 
 	private Optional<Car> car;
+	private Integer age;
+	private String name;
 
 	public Person() {
 		car = Optional.empty();
@@ -16,7 +18,19 @@ public class Person {
 		return person;
 	}
 
-	public static Person withName(String name) {
+	public Person withAge(Integer age) {
+		Person person = Person.this;
+		person.setAge(age);
+		return person;
+	}
+
+	public Person withName(String name) {
+		Person person = Person.this;
+		person.setName(name);
+		return person;
+	}
+
+	public static Person withInsuranceName(String name) {
 		return Person.withCar(Car.withInsurance(Insurance.withName(name)));
 	}
 
@@ -30,5 +44,29 @@ public class Person {
 
 	public void setCar(Car car) {
 		this.car = Optional.ofNullable(car);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "[Person = {Name: " + name
+				+ ", Age: " + age
+				+ ", Car: " + car.orElse(Car.empty()).toString()
+				+ "}]";
 	}
 }

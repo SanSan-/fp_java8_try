@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.Optional;
+
 public class Insurance {
 
 	private String name;
@@ -20,5 +22,10 @@ public class Insurance {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "[Insurance = {Name: " + Optional.ofNullable(name).orElse("") + "}]";
 	}
 }
