@@ -9,12 +9,10 @@ public class DaoUtilTest {
 
 	@Test
 	public void getCarInsuranceName() {
-		// also suddenly DaoUtil.getCarInsuranceName(new Persona()) generate NPE
-		Person person1 = Person.empty();
-		assertEquals(DEFAULT, DaoUtil.getCarInsuranceName(person1));
 		String nameAlex = "Alex";
-		Person person2 = Person.withName(nameAlex);
-		assertEquals(nameAlex, DaoUtil.getCarInsuranceName(person2));
+		assertEquals(DEFAULT, DaoUtil.getCarInsuranceName(new Person()));
+		assertEquals(DEFAULT, DaoUtil.getCarInsuranceName(Person.empty()));
+		assertEquals(nameAlex, DaoUtil.getCarInsuranceName(Person.withName(nameAlex)));
 	}
 
 }

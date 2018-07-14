@@ -6,6 +6,10 @@ public class Person {
 
 	private Optional<Car> car;
 
+	public Person() {
+		car = Optional.empty();
+	}
+
 	public static Person withCar(Car car) {
 		Person person = new Person();
 		person.setCar(car);

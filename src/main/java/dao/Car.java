@@ -6,6 +6,10 @@ public class Car {
 
 	private Optional<Insurance> insurance;
 
+	public Car() {
+		insurance = Optional.empty();
+	}
+
 	public static Car withInsurance(Insurance insurance) {
 		Car car = new Car();
 		car.setInsurance(insurance);
