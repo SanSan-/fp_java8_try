@@ -24,16 +24,20 @@ public class DaoUtil {
 				.orElse(DEFAULT);
 	}
 
+	public static Person unbox(Person person) {
+		return Optional.ofNullable(person).orElse(new Person());
+	}
+
 	public static Validation<String, Person> validateAge(Person person) {
-		Optional<Integer> age = Optional.ofNullable(person.getAge());
+		Optional<Integer> age = Optional.ofNullable(unbox(person).getAge());
 		return age.isPresent() ? ((age.get() > 0 && age.get() < 130) ?
-				success(person) : fail(WARNING_PERSON_AGE, person)) : fail(ERROR_NO_OBJECT, person);
+				success(person) : fail(WARNING_PERSON_AGE, person)) : fail(ERROR_NO_OBJECT, unbox(person));
 	}
 
 	public static Validation<String, Person> validateName(Person person) {
-		Optional<String> name = Optional.ofNullable(person.getName());
+		Optional<String> name = Optional.ofNullable(unbox(person).getName());
 		return name.isPresent() ? ((Character.isUpperCase(name.get().charAt(0))) ?
-				success(person) : fail(WARNING_PERSON_NAME, person)) : fail(ERROR_NO_OBJECT, person);
+				success(person) : fail(WARNING_PERSON_NAME, person)) : fail(ERROR_NO_OBJECT, unbox(person));
 	}
 
 	private static Validation<String, Person> fail(String s, Person p) {
