@@ -8,15 +8,21 @@ import static org.junit.Assert.assertNotNull;
 
 public class FunctionalTest {
 
+	private final static List<Integer> PRIMES_100 = Arrays
+			.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79,
+					83, 89, 97);
+
 	@Test
-	public void primeTest() {
-		List<Integer> primes = Functional.prime.apply(100);
+	public void primesTest() {
+		checkPrimes100(Functional.prime.apply(100));
+		checkPrimes100(Functional.primez.apply(100));
+	}
+
+	private void checkPrimes100(List<Integer> primes) {
 		primes.forEach(i -> Functional.print.accept(String.valueOf(i)));
 		assertNotNull(primes);
 		assertEquals(25, primes.size());
-		assertEquals(Arrays
-				.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79,
-						83, 89, 97), primes);
+		assertEquals(PRIMES_100, primes);
 	}
 
 	@Test

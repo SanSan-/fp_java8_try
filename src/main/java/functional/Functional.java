@@ -9,6 +9,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.IntFunction;
+import java.util.function.IntPredicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -32,6 +33,13 @@ public class Functional {
 
 	public static IntFunction<List<Integer>> prime = n -> curry(primes).apply(new ArrayList<>())
 			.apply(2).apply(n);
+
+	private static IntPredicate isPrime = n -> Stream.iterate(2, i -> i + 1)
+			.limit((long) Math.sqrt(n)).noneMatch(i -> n % i == 0);
+
+	public static IntFunction<List<Integer>> primez = n -> Stream
+			.concat(Stream.of(2), IntStream.range(2, n).filter(Functional.isPrime).boxed())
+			.collect(Collectors.toList());
 
 	private static UnaryOperator<Long> factorial = x -> x == 0 ? 1
 			: x * Functional.factorial.apply(x - 1);
