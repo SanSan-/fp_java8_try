@@ -1,8 +1,7 @@
 import functional.Functional;
-import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,6 +11,7 @@ public class FunctionalTest {
 	@Test
 	public void primeTest() {
 		List<Integer> primes = Functional.prime.apply(100);
+		primes.forEach(i -> Functional.print.accept(String.valueOf(i)));
 		assertNotNull(primes);
 		assertEquals(25, primes.size());
 		assertEquals(Arrays
@@ -21,7 +21,9 @@ public class FunctionalTest {
 
 	@Test
 	public void factorialTest() {
-		assertEquals(java.util.Optional.of(6L), java.util.Optional.of(Functional.fact(3L)));
+		Long factorial = Functional.fact(3L);
+		Functional.print.accept(String.valueOf(factorial));
+		assertEquals(6L, (long) factorial);
 	}
 
 	@Test
