@@ -3,22 +3,18 @@ package services;
 import dao.Car;
 import dao.Insurance;
 import dao.Person;
+import java.util.Optional;
 
 public class DaoUtil {
 
 	public final static String DEFAULT = "Unknown";
 
 	public static String getCarInsuranceName(Person person) {
-		if (person != null) {
-			Car car = person.getCar();
-			if (car != null) {
-				Insurance insurance = car.getInsurance();
-				if (insurance != null) {
-					return insurance.getName();
-				}
-			}
-		}
-		return DEFAULT;
+		return Optional.ofNullable(person)
+				.flatMap(Person::getCar)
+				.flatMap(Car::getInsurance)
+				.map(Insurance::getName)
+				.orElse(DEFAULT);
 	}
 
 }

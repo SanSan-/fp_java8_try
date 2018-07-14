@@ -1,24 +1,30 @@
 package dao;
 
+import java.util.Optional;
+
 public class Person {
 
-	private Car car;
+	private Optional<Car> car;
 
-	public static Person withName(String name) {
-		Insurance insurance = new Insurance();
-		insurance.setName(name);
-		Car cart = new Car();
-		cart.setInsurance(insurance);
+	public static Person withCar(Car car) {
 		Person person = new Person();
-		person.setCar(cart);
+		person.setCar(car);
 		return person;
 	}
 
-	public Car getCar() {
+	public static Person withName(String name) {
+		return Person.withCar(Car.withInsurance(Insurance.withName(name)));
+	}
+
+	public static Person empty() {
+		return Person.withCar(Car.withInsurance(Insurance.empty()));
+	}
+
+	public Optional<Car> getCar() {
 		return car;
 	}
 
 	public void setCar(Car car) {
-		this.car = car;
+		this.car = Optional.ofNullable(car);
 	}
 }
