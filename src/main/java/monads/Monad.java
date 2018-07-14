@@ -1,4 +1,4 @@
-package monad;
+package monads;
 
 import java.util.function.Function;
 
@@ -19,18 +19,18 @@ public class Monad<T> {
 		return value == null ? empty() : of(value);
 	}
 
+	public static <T> Monad<T> empty() {
+		@SuppressWarnings("unchecked")
+		Monad<T> t = (Monad<T>) EMPTY;
+		return t;
+	}
+
 	public <U> Monad<U> map(Function<? super T, ? extends U> f) {
 		return value == null ? empty() : new Monad<>(f.apply(value));
 	}
 
 	public <U> Monad<U> flatMap(Function<? super T, Monad<U>> f) {
 		return value == null ? empty() : f.apply(value);
-	}
-
-	public static <T> Monad<T> empty() {
-		@SuppressWarnings("unchecked")
-		Monad<T> t = (Monad<T>) EMPTY;
-		return t;
 	}
 
 	public T orElse(T other) {
