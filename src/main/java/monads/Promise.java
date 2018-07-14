@@ -20,11 +20,11 @@ public class Promise<A> implements Future<A> {
 		return new Promise<>(CompletableFuture.supplyAsync(supplier));
 	}
 
-	public <B> Promise<B> map(Function<? super A, ? extends B> f) {
+	public <B> Promise<B> then(Function<? super A, ? extends B> f) {
 		return new Promise<>(future.thenApplyAsync(f));
 	}
 
-	public <B> Promise<B> flatMap(Function<? super A, Promise<B>> f) {
+	public <B> Promise<B> thenCall(Function<? super A, Promise<B>> f) {
 		return new Promise<>(future.thenComposeAsync(a -> f.apply(a).future));
 	}
 
