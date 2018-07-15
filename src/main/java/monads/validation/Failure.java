@@ -6,13 +6,13 @@ public class Failure<L, A> extends Validation<L, A> {
 
 	protected final L left;
 
-	private Failure(A value, L left) {
+	protected Failure(L left, A value) {
 		super(value);
 		this.left = left;
 	}
 
 	public static <L, A> Failure<L, A> failure(L left, A value) {
-		return new Failure<>(value, left);
+		return new Failure<>(left, value);
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class Failure<L, A> extends Validation<L, A> {
 	public <B> Validation<L, B> flatMap(Function<? super A, Validation<?, ? extends B>> mapper) {
 		Validation<?, ? extends B> result = mapper.apply(value);
 		return result.isSuccess() ? failure(left, result.value) :
-				failure(((Failure<L, B>) result).left, result.value);
+				failure((( Failure<L, B> ) result).left, result.value);
 	}
 
 	@Override
