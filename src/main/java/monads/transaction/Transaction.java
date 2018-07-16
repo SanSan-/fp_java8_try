@@ -10,7 +10,7 @@ public abstract class Transaction<T> {
 
 	protected long timeout;
 	protected Propaganation propaganation;
-	protected T result;
+	protected T store;
 	protected int count;
 
 	protected Transaction(Propaganation prop, Long timeout) {
@@ -37,7 +37,7 @@ public abstract class Transaction<T> {
 		return count;
 	}
 
-	public T getResult() {
-		return (isSuccess() && !isStarted()) ? result : null;
+	public T getStore() {
+		return (isSuccess() && !isStarted()) ? store : null;
 	}
 }

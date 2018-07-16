@@ -5,7 +5,7 @@ public class Commit<T> extends StartedTransaction<T> {
 	private Commit(int count, T value) {
 		super();
 		this.count = count;
-		this.result = value;
+		this.store = value;
 	}
 
 	public static <T> Commit<T> doCommit(int count, T value) {

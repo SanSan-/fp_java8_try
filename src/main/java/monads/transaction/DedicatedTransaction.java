@@ -9,7 +9,7 @@ public class DedicatedTransaction<T> extends StartedTransaction<List<T>> {
 	public DedicatedTransaction(Collection<? extends T> value) {
 		super();
 		this.count++;
-		result = new ArrayList<>(value);
+		store = new ArrayList<>(value);
 	}
 
 	public static <T> DedicatedTransaction<T> doInDedicatedTransaction(
@@ -24,7 +24,7 @@ public class DedicatedTransaction<T> extends StartedTransaction<List<T>> {
 
 	@Override
 	public boolean isSuccess() {
-		return result.isEmpty();
+		return store.isEmpty();
 	}
 
 }

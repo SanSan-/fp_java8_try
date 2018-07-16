@@ -31,7 +31,7 @@ public class TransactionManagerTest {
 		assertTrue(start().map(() -> Person.empty()).commit().isSuccess());
 		assertFalse(start().map(() -> Person.empty()).rollback().isStarted());
 		assertFalse(start().map(() -> Person.empty()).rollback().isSuccess());
-		assertNull(start().map(() -> Person.empty()).rollback().getResult());
-		assertNull(start().commit().getResult());
+		assertNull(start().map(() -> Person.empty()).rollback().getStore());
+		assertNull(start().commit().getStore());
 	}
 }

@@ -35,8 +35,8 @@ public class StartedTransaction<T> extends Transaction<T> {
 	public <E> Transaction<E> commit() {
 		int promise = count() - 1;
 		return (!isStarted() || promise < 0) ? doRollback()
-				: (promise > 0 ? ( Transaction<E> ) dedicatedTx(this.result)
-						: doCommit(promise, ( E ) result));
+				: (promise > 0 ? ( Transaction<E> ) dedicatedTx(this.store)
+						: doCommit(promise, ( E ) store));
 	}
 
 	public <E> Transaction<E> rollback() {
@@ -52,7 +52,7 @@ public class StartedTransaction<T> extends Transaction<T> {
 		T value;
 		try {
 			value = ( T ) callable.call();
-			this.result = value;
+			this.store = value;
 		} catch (Exception e) {
 			return rollback();
 		}
@@ -62,7 +62,7 @@ public class StartedTransaction<T> extends Transaction<T> {
 	@Override
 	public <E> Transaction<E> flatMap(Function<Callable<? super T>, Transaction<E>> mapper) {
 		Transaction<? extends E> result;
-		result = mapper.apply(() -> this.result);
+		result = mapper.apply(() -> this.store);
 		return ( Transaction<E> ) result;
 	}
 
