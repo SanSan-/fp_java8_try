@@ -13,7 +13,7 @@ public class DedicatedTransaction<T> extends StartedTransaction<List<T>> {
 	}
 
 	public static <T> DedicatedTransaction<T> doInDedicatedTransaction(
-			Collection<? extends T> value) {
+		Collection<? extends T> value) {
 		return new DedicatedTransaction<>(value);
 	}
 

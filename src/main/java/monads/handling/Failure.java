@@ -12,12 +12,12 @@ public class Failure<A> implements Try<A> {
 
 	@Override
 	public <B> Try<B> map(Function<A, B> f) {
-		return ( Failure<B> ) this;
+		return (Failure<B>)this;
 	}
 
 	@Override
 	public <B> Try<B> flatMap(Function<A, Try<B>> f) {
-		return ( Failure<B> ) this;
+		return (Failure<B>)this;
 	}
 
 	@Override

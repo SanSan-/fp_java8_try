@@ -50,7 +50,7 @@ public class Promise<A> implements Future<A> {
 
 	@Override
 	public A get(long timeout, TimeUnit unit)
-			throws InterruptedException, ExecutionException, TimeoutException {
+		throws InterruptedException, ExecutionException, TimeoutException {
 		return future.get();
 	}
 }

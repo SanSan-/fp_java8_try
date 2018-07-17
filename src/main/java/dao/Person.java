@@ -65,8 +65,8 @@ public class Person {
 	@Override
 	public String toString() {
 		return "[Person = {Name: " + name
-				+ ", Age: " + age
-				+ ", Car: " + car.orElse(Car.empty()).toString()
-				+ "}]";
+			+ ", Age: " + age
+			+ ", Car: " + car.orElse(Car.empty()).toString()
+			+ "}]";
 	}
 }

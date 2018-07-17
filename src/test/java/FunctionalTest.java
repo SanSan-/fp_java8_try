@@ -9,8 +9,7 @@ import static org.junit.Assert.assertNotNull;
 public class FunctionalTest {
 
 	private final static List<Integer> PRIMES_100 = Arrays
-			.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79,
-					83, 89, 97);
+		.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97);
 
 	@Test
 	public void primesTest() {
@@ -29,7 +28,7 @@ public class FunctionalTest {
 	public void factorialTest() {
 		Long factorial = Functional.fact(3L);
 		Functional.print.accept(String.valueOf(factorial));
-		assertEquals(6L, (long) factorial);
+		assertEquals(6L, (long)factorial);
 	}
 
 	@Test

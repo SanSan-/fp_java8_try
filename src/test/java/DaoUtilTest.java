@@ -16,5 +16,4 @@ public class DaoUtilTest {
 		assertEquals(nameAlex, DaoUtil.getCarInsuranceName(Person.withInsuranceName(nameAlex)));
 	}
 
-
 }

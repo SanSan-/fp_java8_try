@@ -14,10 +14,10 @@ public class TransactionManagerTest {
 	@Test
 	public void runInTx() {
 		Person person = TransactionManager
-				.runInTx(() -> Person.withInsuranceName("Monty").withAge(27).withName("Colin"), 1000L);
+			.runInTx(() -> Person.withInsuranceName("Monty").withAge(27).withName("Colin"), 1000L);
 		assertNotNull(person);
 		assertEquals("Monty", person.getCar().get().getInsurance().get().getName());
-		assertEquals(27, ( int ) person.getAge());
+		assertEquals(27, (int)person.getAge());
 		assertEquals("Colin", person.getName());
 	}
 

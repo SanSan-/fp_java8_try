@@ -21,7 +21,7 @@ public class Monad<T> {
 
 	public static <T> Monad<T> empty() {
 		@SuppressWarnings("unchecked")
-		Monad<T> t = (Monad<T>) EMPTY;
+		Monad<T> t = (Monad<T>)EMPTY;
 		return t;
 	}
 

@@ -27,7 +27,7 @@ public class Success<L, A> extends Validation<L, A> {
 
 	@Override
 	public <B> Validation<L, B> flatMap(Function<? super A, Validation<?, ? extends B>> mapper) {
-		return ( Validation<L, B> ) mapper.apply(value);
+		return (Validation<L, B>)mapper.apply(value);
 	}
 
 	@Override

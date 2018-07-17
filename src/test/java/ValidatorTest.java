@@ -35,12 +35,10 @@ public class ValidatorTest {
 		assertFalse(Validator.validatePerson(Person.empty()).isSuccess());
 
 		assertFalse(Validator.validatePerson(Person.empty().withAge(0).withName("Sammy")).isSuccess());
-		assertFalse(
-				Validator.validatePerson(Person.empty().withAge(130).withName("Sammy")).isSuccess());
+		assertFalse(Validator.validatePerson(Person.empty().withAge(130).withName("Sammy")).isSuccess());
 
 		assertFalse(Validator.validatePerson(Person.empty().withAge(1).withName("sammy")).isSuccess());
-		assertFalse(
-				Validator.validatePerson(Person.empty().withAge(129).withName("sammy")).isSuccess());
+		assertFalse(Validator.validatePerson(Person.empty().withAge(129).withName("sammy")).isSuccess());
 
 		assertTrue(Validator.validatePerson(Person.empty().withAge(1).withName("Sammy")).isSuccess());
 		assertTrue(Validator.validatePerson(Person.empty().withAge(129).withName("Sammy")).isSuccess());

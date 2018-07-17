@@ -13,7 +13,7 @@ import monads.reader.TryReader;
 public class BankService {
 
 	public static TryReader<BankConnection, Account> open(String owner, String number,
-			BigDecimal balance) {
+		BigDecimal balance) {
 		return new TryReader<>(bankConnection -> {
 			if (balance.compareTo(BigDecimal.ZERO) < 0) {
 				return new Failure<>(new InsufficientBalanceException());
@@ -24,7 +24,7 @@ public class BankService {
 
 	public static Reader<BankConnection, Account> credit(Account account, BigDecimal value) {
 		return new Reader<>(bankConnection -> new Account(account.getOwner(), account.getNumber(),
-				new Balance(account.getBalance().getAmount().add(value))));
+			new Balance(account.getBalance().getAmount().add(value))));
 	}
 
 	public static TryReader<BankConnection, Account> debit(Account account, BigDecimal value) {
@@ -33,7 +33,7 @@ public class BankService {
 				return new Failure<>(new InsufficientBalanceException());
 			}
 			return new Success<>(new Account(account.getOwner(), account.getNumber(),
-					new Balance(account.getBalance().getAmount().subtract(value))));
+				new Balance(account.getBalance().getAmount().subtract(value))));
 		});
 	}
 

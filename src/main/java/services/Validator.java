@@ -26,19 +26,19 @@ public class Validator {
 	public static Validation<String, Person> validateAge(Person person) {
 		Optional<Integer> age = Optional.ofNullable(unbox(person).getAge());
 		return age.isPresent() ? ((age.get() > 0 && age.get() < 130) ?
-				success(person) : fail(WARNING_PERSON_AGE, person)) : fail(ERROR_NO_OBJECT, unbox(person));
+			success(person) : fail(WARNING_PERSON_AGE, person)) : fail(ERROR_NO_OBJECT, unbox(person));
 	}
 
 	public static Validation<String, Person> validateName(Person person) {
 		Optional<String> name = Optional.ofNullable(unbox(person).getName());
 		return name.isPresent() ? ((Character.isUpperCase(name.get().charAt(0))) ?
-				success(person) : fail(WARNING_PERSON_NAME, person)) : fail(ERROR_NO_OBJECT, unbox(person));
+			success(person) : fail(WARNING_PERSON_NAME, person)) : fail(ERROR_NO_OBJECT, unbox(person));
 	}
 
 	public static Validation<List<Object>, Person> validatePerson(Person person) {
 		return success(person)
-				.failList()
-				.flatMap(Validator::validateAge)
-				.flatMap(Validator::validateName);
+			.failList()
+			.flatMap(Validator::validateAge)
+			.flatMap(Validator::validateName);
 	}
 }

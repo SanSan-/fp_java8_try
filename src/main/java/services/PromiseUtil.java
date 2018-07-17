@@ -21,7 +21,7 @@ public class PromiseUtil {
 	}
 
 	public static Function<String, Promise<Integer>> composeLongComp = s -> Promise
-			.promise(() -> slowLength(s))
-			.thenCall(i -> Promise.promise(() -> slowDouble(i)));
+		.promise(() -> slowLength(s))
+		.thenCall(i -> Promise.promise(() -> slowDouble(i)));
 
 }

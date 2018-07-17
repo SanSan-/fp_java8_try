@@ -9,13 +9,12 @@ public class DaoUtil {
 
 	public final static String DEFAULT = "Unknown";
 
-
 	public static String getCarInsuranceName(Person person) {
 		return Optional.ofNullable(person)
-				.flatMap(Person::getCar)
-				.flatMap(Car::getInsurance)
-				.map(Insurance::getName)
-				.orElse(DEFAULT);
+			.flatMap(Person::getCar)
+			.flatMap(Car::getInsurance)
+			.map(Insurance::getName)
+			.orElse(DEFAULT);
 	}
 
 }

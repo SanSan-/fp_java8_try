@@ -10,6 +10,6 @@ public class PromiseUtilTest {
 	@Test
 	public void composeLongComp() throws ExecutionException, InterruptedException {
 		Promise<Integer> p = PromiseUtil.composeLongComp.apply("Hello");
-		assertEquals(10, (int) p.get());
+		assertEquals(10, (int)p.get());
 	}
 }

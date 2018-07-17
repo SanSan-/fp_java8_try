@@ -21,13 +21,13 @@ public class FailureList<L, A> extends Failure<List<L>, A> {
 
 	@Override
 	public <B> Validation<List<L>, B> flatMap(
-			Function<? super A, Validation<?, ? extends B>> mapper) {
+		Function<? super A, Validation<?, ? extends B>> mapper) {
 		Validation<?, ? extends B> result = mapper.apply(value);
-		return ( Validation<List<L>, B> ) (result.isSuccess() ?
-				failureList(left, result.value) :
-				failureList(new ArrayList<L>(left) {{
-					add((( Failure<L, B> ) result).left);
-				}}, result.value));
+		return (Validation<List<L>, B>)(result.isSuccess() ?
+			failureList(left, result.value) :
+			failureList(new ArrayList<L>(left) {{
+				add(((Failure<L, B>)result).left);
+			}}, result.value));
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public abstract class Validation<L, A> {
 	public abstract <B> Validation<L, B> map(Function<? super A, ? extends B> mapper);
 
 	public abstract <B> Validation<L, B> flatMap(
-			Function<? super A, Validation<?, ? extends B>> mapper);
+		Function<? super A, Validation<?, ? extends B>> mapper);
 
 	public abstract boolean isSuccess();
 }
