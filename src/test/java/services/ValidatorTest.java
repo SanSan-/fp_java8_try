@@ -1,6 +1,7 @@
+package services;
+
 import dao.Person;
 import org.junit.Test;
-import services.Validator;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;

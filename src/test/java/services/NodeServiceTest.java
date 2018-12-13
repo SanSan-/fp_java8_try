@@ -1,7 +1,8 @@
+package services;
+
 import dao.Node;
 import dao.NodeTree;
 import org.junit.Test;
-import services.NodeService;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,12 +1,9 @@
+package services;
+
 import dao.Person;
 import org.junit.Test;
-import services.TransactionManager;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.*;
 import static monads.transaction.StartedTransaction.start;
 
 public class TransactionManagerTest {

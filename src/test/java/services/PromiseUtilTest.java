@@ -1,7 +1,9 @@
-import java.util.concurrent.ExecutionException;
+package services;
+
 import monads.Promise;
 import org.junit.Test;
-import services.PromiseUtil;
+
+import java.util.concurrent.ExecutionException;
 
 import static junit.framework.Assert.assertEquals;
 

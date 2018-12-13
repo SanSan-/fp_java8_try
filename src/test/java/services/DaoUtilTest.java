@@ -1,6 +1,7 @@
+package services;
+
 import dao.Person;
 import org.junit.Test;
-import services.DaoUtil;
 
 import static junit.framework.Assert.assertEquals;
 import static services.DaoUtil.DEFAULT;

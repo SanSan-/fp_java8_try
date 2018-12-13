@@ -1,15 +1,16 @@
+package services;
+
 import dao.Account;
 import dao.BankConnection;
-import java.math.BigDecimal;
 import monads.handling.Try;
 import monads.reader.TryReader;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static services.BankService.credit;
-import static services.BankService.debit;
-import static services.BankService.open;
+import static services.BankService.*;
 
 public class BankServiceTest {
 
