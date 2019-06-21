@@ -2,36 +2,39 @@ package mappers;
 
 import dao.Filter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiConsumer;
-import java.util.function.Predicate;
 
-public class FilterMapper {
+public enum FilterMapper {
+    UNKNOWN_KEY(null, emptyMapper()),
+    ID_KEY("id", mapSimpleFilter("id", "objectId"));
 
-    public List<Filter> mapToFilterList(Map<String, Object> params) {
-        List<Filter> filters = new ArrayList<>();
-        BiConsumer<Predicate<Map<String, Object>>, BiConsumer<Map<String, Object>, List<Filter>>> fillIfExist = fillIfExist(params, filters);
-        fillIfExist.accept(search -> isExist(search, "id"), this::mapIdFilter);
-        return filters;
+    private String key;
+    private BiConsumer<Map<String, Object>, List<Filter>> mapper;
+
+    FilterMapper(String key, BiConsumer<Map<String, Object>, List<Filter>> mapper) {
+        this.key = key;
+        this.mapper = mapper;
     }
 
-    private Boolean isExist(Map<String, Object> params, String key) {
-        return Objects.nonNull(params.get(key));
-    }
-
-    private BiConsumer<Predicate<Map<String, Object>>, BiConsumer<Map<String, Object>, List<Filter>>> fillIfExist(Map<String, Object> params, List<Filter> filters) {
-        return (predicate, consumer) -> {
-            if (predicate.test(params)) {
-                consumer.accept(params, filters);
+    public static BiConsumer<Map<String, Object>, List<Filter>> getMapperByKey(String key) {
+        for (FilterMapper filterMapper : values()) {
+            if (Objects.equals(filterMapper.key, key)) {
+                return filterMapper.mapper;
             }
-        };
+        }
+        return UNKNOWN_KEY.mapper;
     }
 
-    private void mapIdFilter(Map<String, Object> params, List<Filter> filters) {
-        filters.add(Filter.of("objectId", String.valueOf(params.get("id"))));
+    private static BiConsumer<Map<String, Object>, List<Filter>> mapSimpleFilter(String paramKey, String filterKey) {
+        return (params, filters) -> filters.add(Filter.of(filterKey, String.valueOf(params.get(paramKey))));
+    }
+
+    private static BiConsumer<Map<String, Object>, List<Filter>> emptyMapper() {
+        return (params, filters) -> {
+        };
     }
 
 }
