@@ -2,34 +2,34 @@ package monads.either;
 
 import java.util.function.Function;
 
-public class Success <L, R> extends Either<L, R> {
+public class Success <L, A> extends Either<L, A> {
 
-    private Success(R value) {
+    private Success(A value) {
         super(null, value);
     }
 
-    public static <A> Either success(A value) {
+    public static <L, R> Success<L, R> success(R value) {
         return new Success<>(value);
     }
 
     @Override
-    public <B> Either<L, B> map(Function<? super R, ? extends B> mapper) {
+    public <B> Either<B, A> leftMap(Function<? super L, ? extends B> mapper) {
+        return success(value);
+    }
+
+    @Override
+    public <B> Either<L, B> map(Function<? super A, ? extends B> mapper) {
         return success(mapper.apply(value));
     }
 
     @Override
-    public <A> Either<A, R> leftMap(Function<? super L, ? extends A> mapper) {
+    public <B> Either<B, A> leftFlatMap(Function<? super L, Either<? extends B, ?>> mapper) {
         return success(value);
     }
 
     @Override
-    public <B> Either<L, B> flatMap(Function<? super R, Either<?, ? extends B>> mapper) {
+    public <B> Either<L, B> flatMap(Function<? super A, Either<?, ? extends B>> mapper) {
         return (Either<L, B>) mapper.apply(value);
-    }
-
-    @Override
-    public <A> Either<A, R> leftFlatMap(Function<? super L, Either<? extends A, ?>> mapper) {
-        return success(value);
     }
 
     @Override
