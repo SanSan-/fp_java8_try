@@ -1,16 +1,15 @@
 package dao;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.math.BigDecimal;
 
+@AllArgsConstructor
+@Getter
+@ToString
 public class Balance {
 
-	private final BigDecimal amount;
-
-	public Balance(BigDecimal amount) {
-		this.amount = amount;
-	}
-
-	public BigDecimal getAmount() {
-		return amount;
-	}
+    private final BigDecimal amount;
 }

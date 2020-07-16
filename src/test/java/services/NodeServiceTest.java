@@ -24,16 +24,11 @@ public class NodeServiceTest {
 
     @Test
     public void copyNodeTree() {
-        NodeTree excepted = new NodeTree(1, Arrays.asList(
-                new NodeTree(2, null),
-                new NodeTree(3, Arrays.asList(
-                        new NodeTree(5, null),
-                        new NodeTree(6, null),
-                        new NodeTree(7, null)
-                )),
-                new NodeTree(4, Collections.singletonList(
-                        new NodeTree(8, null)
-                ))));
+        NodeTree excepted = new NodeTree(1, Arrays.asList(new NodeTree(2, null), new NodeTree(3, Arrays.asList(
+            new NodeTree(5, null), new NodeTree(6, null), new NodeTree(7, null))), new NodeTree(4,
+                                                                                                Collections.singletonList(
+                                                                                                    new NodeTree(8,
+                                                                                                                 null)))));
         System.out.println("NodeTree.excepted = " + excepted);
         NodeTree actual = nodeService.copy(excepted);
         System.out.println("NodeTree.actual = " + actual);

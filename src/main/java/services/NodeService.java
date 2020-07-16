@@ -12,7 +12,11 @@ public class NodeService {
     }
 
     public NodeTree copy(NodeTree n) {
-        return n == null ? null : new NodeTree(n.getValue(), n.getNext() == null ? null : n.getNext().stream().map(this::copy).collect(Collectors.toList()));
+        return n == null
+            ? null
+            : new NodeTree(n.getValue(), n.getNext() == null
+                ? null
+                : n.getNext().stream().map(this::copy).collect(Collectors.toList()));
     }
 
 }

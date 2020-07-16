@@ -9,9 +9,9 @@ import static junit.framework.Assert.assertEquals;
 
 public class PromiseUtilTest {
 
-	@Test
-	public void composeLongComp() throws ExecutionException, InterruptedException {
-		Promise<Integer> p = PromiseUtil.composeLongComp.apply("Hello");
-		assertEquals(10, (int)p.get());
-	}
+    @Test
+    public void composeLongComp() throws ExecutionException, InterruptedException {
+        Promise<Integer> p = PromiseUtil.composeLongComp.apply("Hello");
+        assertEquals(10, (int) p.get());
+    }
 }

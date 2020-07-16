@@ -34,8 +34,13 @@ public class FilterUtilTest {
         checkFilter(filters, "objectId", EQUAL, expectedId);
     }
 
-    private void checkFilter(List<Filter> filters, String expectedKey, FilterModificator expectedModificator, String... values) {
-        Optional<Filter> actual = filters.stream().filter(filter -> Objects.equals(filter.getKey(), expectedKey)).findFirst();
+    private void checkFilter(List<Filter> filters,
+                             String expectedKey,
+                             FilterModificator expectedModificator,
+                             String... values) {
+        Optional<Filter> actual = filters.stream()
+            .filter(filter -> Objects.equals(filter.getKey(), expectedKey))
+            .findFirst();
         assertTrue(actual.isPresent());
         assertEquals(expectedKey, actual.get().getKey());
         assertEquals(expectedModificator, actual.get().getModificator());

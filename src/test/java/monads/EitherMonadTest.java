@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import static monads.either.Failure.fail;
 import static monads.either.Success.success;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class EitherMonadTest {
 
@@ -42,24 +44,24 @@ public class EitherMonadTest {
     @Test
     public void test_success_flat_right() {
         final Either<Object, String> rightConversion = success(753).leftFlatMap(EitherMonadTest::throwFlatTestError)
-                .flatMap(actual -> success(actual.toString() + "right"))
-                .map(result -> {
-                    assertEquals("753right", result);
-                    return result;
-                })
-                .leftMap(EitherMonadTest::throwTestError);
+            .flatMap(actual -> success(actual.toString() + "right"))
+            .map(result -> {
+                assertEquals("753right", result);
+                return result;
+            })
+            .leftMap(EitherMonadTest::throwTestError);
         assertTrue(rightConversion.isSuccess());
     }
 
     @Test
     public void test_success_flat_left() {
         final Either<Object, Object> leftConversion = success(146).leftFlatMap(EitherMonadTest::throwFlatTestError)
-                .flatMap(actual -> fail(actual.toString() + "left", null))
-                .map(EitherMonadTest::throwTestError)
-                .leftMap(left -> {
-                    assertEquals("146left", left);
-                    return left;
-                });
+            .flatMap(actual -> fail(actual.toString() + "left", null))
+            .map(EitherMonadTest::throwTestError)
+            .leftMap(left -> {
+                assertEquals("146left", left);
+                return left;
+            });
         assertFalse(leftConversion.isSuccess());
     }
 
@@ -67,34 +69,34 @@ public class EitherMonadTest {
     public void test_fail() {
         Integer expected = 1534;
         final Either<String, Object> failEither = fail(expected, null).map(EitherMonadTest::throwTestError)
-                .leftMap(actual -> {
-                    assertEquals(expected, actual);
-                    return actual.toString();
-                });
+            .leftMap(actual -> {
+                assertEquals(expected, actual);
+                return actual.toString();
+            });
         assertFalse(failEither.isSuccess());
     }
 
     @Test
     public void test_fail_flat_right() {
         final Either<Object, Object> rightConversion = fail(283, null).flatMap(EitherMonadTest::throwFlatTestError)
-                .leftFlatMap(actual -> success(actual.toString() + "right"))
-                .map(result -> {
-                    assertEquals("283right", result);
-                    return result;
-                })
-                .leftMap(EitherMonadTest::throwTestError);
+            .leftFlatMap(actual -> success(actual.toString() + "right"))
+            .map(result -> {
+                assertEquals("283right", result);
+                return result;
+            })
+            .leftMap(EitherMonadTest::throwTestError);
         assertTrue(rightConversion.isSuccess());
     }
 
     @Test
     public void test_fail_flat_left() {
         final Either<Object, Object> leftConversion = fail(360, null).flatMap(EitherMonadTest::throwFlatTestError)
-                .leftFlatMap(actual -> fail(actual.toString() + "left", null))
-                .map(EitherMonadTest::throwTestError)
-                .leftMap(left -> {
-                    assertEquals("360left", left);
-                    return left;
-                });
+            .leftFlatMap(actual -> fail(actual.toString() + "left", null))
+            .map(EitherMonadTest::throwTestError)
+            .leftMap(left -> {
+                assertEquals("360left", left);
+                return left;
+            });
         assertFalse(leftConversion.isSuccess());
     }
 }

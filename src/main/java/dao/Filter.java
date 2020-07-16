@@ -1,21 +1,24 @@
 package dao;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.Collections;
 import java.util.List;
 
 import static dao.FilterModificator.EQUAL;
 
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Filter {
 
     private String key;
     private List<String> values;
     private FilterModificator modificator;
-
-    private Filter(String key, List<String> values, FilterModificator modificator) {
-        this.key = key;
-        this.values = values;
-        this.modificator = modificator;
-    }
 
     public static Filter of(String key, String value) {
         return of(key, value, EQUAL);
@@ -33,15 +36,4 @@ public class Filter {
         return new Filter(key, values, modificator);
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public FilterModificator getModificator() {
-        return modificator;
-    }
-
-    public List<String> getValues() {
-        return values;
-    }
 }

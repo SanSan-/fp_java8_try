@@ -6,38 +6,38 @@ import java.util.function.Function;
 
 public abstract class Transaction<T> {
 
-	public final static long DEFAULT_TIMEOUT = 60_000L;
+    public final static long DEFAULT_TIMEOUT = 60_000L;
 
-	protected long timeout;
-	protected Propaganation propaganation;
-	protected T store;
-	protected int count;
+    protected long timeout;
+    protected Propaganation propaganation;
+    protected T store;
+    protected int count;
 
-	protected Transaction(Propaganation prop, Long timeout) {
-		this.propaganation = prop;
-		this.timeout = timeout;
-		this.count = 0;
-	}
+    protected Transaction(Propaganation prop, Long timeout) {
+        this.propaganation = prop;
+        this.timeout = timeout;
+        this.count = 0;
+    }
 
-	public abstract <E> Transaction<E> commit();
+    public abstract <E> Transaction<E> commit();
 
-	public abstract <E> Transaction<E> rollback();
+    public abstract <E> Transaction<E> rollback();
 
-	public abstract Transaction<List<T>> dedicatedTx(T value);
+    public abstract Transaction<List<T>> dedicatedTx(T value);
 
-	public abstract <E> Transaction<E> map(Callable<? super T> callable);
+    public abstract <E> Transaction<E> map(Callable<? super T> callable);
 
-	public abstract <E> Transaction<E> flatMap(Function<Callable<? super T>, Transaction<E>> mapper);
+    public abstract <E> Transaction<E> flatMap(Function<Callable<? super T>, Transaction<E>> mapper);
 
-	public abstract boolean isStarted();
+    public abstract boolean isStarted();
 
-	public abstract boolean isSuccess();
+    public abstract boolean isSuccess();
 
-	protected int count() {
-		return count;
-	}
+    protected int count() {
+        return count;
+    }
 
-	public T getStore() {
-		return (isSuccess() && !isStarted()) ? store : null;
-	}
+    public T getStore() {
+        return (isSuccess() && !isStarted()) ? store : null;
+    }
 }

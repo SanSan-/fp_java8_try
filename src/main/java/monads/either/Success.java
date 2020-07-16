@@ -2,7 +2,7 @@ package monads.either;
 
 import java.util.function.Function;
 
-public class Success <L, A> extends Either<L, A> {
+public class Success<L, A> extends Either<L, A> {
 
     private Success(A value) {
         super(null, value);

@@ -1,9 +1,8 @@
 package dao;
 
-public class BankConnection {
+import lombok.AllArgsConstructor;
 
-	public BankConnection() {
-		//do nothing
-	}
+@AllArgsConstructor
+public class BankConnection {
 
 }
