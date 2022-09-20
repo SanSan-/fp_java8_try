@@ -2,7 +2,7 @@ package mappers;
 
 import dao.Filter;
 import dao.FilterModificator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import services.FilterUtil;
 
 import java.util.HashMap;
@@ -11,8 +11,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static dao.FilterModificator.EQUAL;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilterUtilTest {
 

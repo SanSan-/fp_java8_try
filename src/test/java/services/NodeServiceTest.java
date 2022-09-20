@@ -2,12 +2,12 @@ package services;
 
 import dao.Node;
 import dao.NodeTree;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NodeServiceTest {
 
